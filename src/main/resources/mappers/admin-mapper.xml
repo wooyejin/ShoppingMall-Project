@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="adminMapper">
+      <!-- reusltMap -->
+      <resultMap type="Coupon" id="CouponResultSet">
+         <id property = "cpNo" column="CP_NO"/>
+         <result property="cpName" column="CP_NAME"/>
+         <result property="cpDiscount" column="CP_DISCOUNT"/>
+         <result property="cpDate" column="CP_DATE"/>
+      </resultMap>
+
+      <resultMap type="UpCategory" id="UpCategorySelectResultSet">
+         <id property = "up_no" column="UP_NO"/>
+         <result property="up_name" column="UP_NAME"/>
+         <result property="up_using" column="UP_USING"/>
+         <result property="up_date" column="UP_DATE"/>
+      </resultMap>
+
+      <resultMap type="DownCategory" id="DownCategorySelectResultSet">
+         <id property = "down_no" column="DOWN_NO"/>
+         <result property="up_no" column="UP_NO"/>
+         <result property="down_name" column="DOWN_NAME"/>
+         <result property="down_using" column="DOWN_USING"/>
+         <result property="down_date" column="DOWN_DATE"/>
+      </resultMap>
+
+      <resultMap type="Design" id="MainResultSet">
+         <id property = "deNo" column="D_NO"/>
+         <result property="mainComment" column="D_COMMENT"/>
+         <result property="reFile" column="D_REFILE"/>
+         <result property="oriFile" column="D_ORIFILE"/>
+         <result property="mainLink" column="D_LINK"/>
+         
+      </resultMap>
+
+      <resultMap type="Design" id="VideoResultSet">
+         <id property = "deNo" column="V_NO"/>
+         <result property="oriFile" column="VIDEOFILE"/>
+         
+      </resultMap>
+
+      <resultMap type="Design" id="InstaResultSet">
+         <id property = "deNo" column="IN_NO"/>
+         <result property="reFile" column="IN_REFILE"/>
+         <result property="oriFile" column="IN_ORIFILE"/>
+         <result property="mainLink" column="IN_LINK"/>
+         <result property="mainComment" column="IN_COMMENT"/>
+      </resultMap>
+		
+		  <resultMap type="Design" id="prdtImgResultSet">
+         <result property="reFile" column="OT_EVENTIMG"/>
+         <result property="mainComment" column="OT_EVENT_COMMENT"/>
+      </resultMap>
+
+
+		<resultMap type="Ord" id="OrdreusltMap1">
+			<id property="ord_no" column="ORD_NO"/>
+			<result property="prdt_no" column="PRDT_NO"/>
+			<result property="prdt_name" column="PRDT_NAME"/>
+			<result property="prdt_sumprice" column="PAY_MONEY"/>
+			<result property="ord_receiver" column="ORD_RECEIVER"/>
+			<result property="ord_address" column="ORD_ADDRESS"/>
+			<result property="ord_phone" column="ORD_PHONE"/>
+			<result property="ord_message" column="ORD_MESSAGE"/>
+			<result property="ord_date" column="ORD_DATE"/>
+			<result property="ord_status" column="ORD_STATUS"/>
+		</resultMap>
+		
+	<resultMap type="Return" id="ReturnResultMap">
+			<id property="reNo" column="RE_NO"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="ordCode" column="ORD_CODE"/>
+			<result property="qnaDate" column="QNA_DATE"/>
+			<result property="reTitle" column="RE_TITLE"/>
+			<result property="reName" column="RE_NAME"/>
+			<result property="content" column="RE_CONTENT"/>
+			<result property="reReason" column="RE_REASON"/>
+			<result property="reCheck" column="RE_CHECK"/>
+			<result property="reReal" column="RE_REAL"/>
+			<result property="reDate" column="RE_DATE"/>
+			<result property="reMent" column="RE_MENT"/>
+			<result property="reStatus" column="RE_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="Return" id="ReturnResultMap2">
+			<id property="reNo" column="RE_NO"/>
+			<result property="qnaDate" column="QNA_DATE"/>
+			<result property="reName" column="RE_NAME"/>
+			<result property="reTitle" column="RE_TITLE"/>
+			<result property="content" column="RE_CONTENT"/>
+			<result property="ordCode" column="ORD_CODE"/>
+			<result property="reReason" column="RE_REASON"/>
+			<result property="reCheck" column="RE_CHECK"/>
+			<result property="reReal" column="RE_REAL"/>
+			<result property="reMent" column="RE_MENT"/>
+			<result property="reStatus" column="RE_STATUS"/>
+			<result property="memPhone" column="MEM_PHONE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="memEmail" column="MEM_EMAIL"/>
+			<result property="memAddress" column="ORD_ADDRESS"/>
+			<result property="memReceiver" column="ORD_RECEIVER"/>
+			<result property="prdtNo" column="PRDT_NO"/>
+			<result property="ordSize" column="ORD_SIZE"/>
+			<result property="ordColor" column="ORD_COLOR"/>
+			<result property="ordDate" column="ORD_DATE"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="payPoint" column="PAY_POINT"/>
+			<result property="payMoney" column="PAY_MONEY"/>
+			<result property="payCategory" column="PAY_CATEGORY"/>
+			<result property="payYn" column="PAY_YN"/>
+			<result property="cpDiscount" column="CP_DISCOUNT"/>
+			<result property="cpName" column="CP_NAME"/>
+			<result property="cpmemNo" column="CPMEM_NO"/>
+	</resultMap>
+	
+	<resultMap type="PrdtConnect" id="PrdtConnectResultSet">
+		<id property = "selectNo" column="PRDT_NO"/>
+		<result property="connect_no1" column="CONNECT_NO1"/>
+		<result property="connect_no2" column="CONNECT_NO2"/>
+		<result property="connect_no3" column="CONNECT_NO3"/>
+		<result property="connect_no4" column="CONNECT_NO4"/>
+		<result property="connect_no5" column="CONNECT_NO5"/>
+		<result property="connect_no6" column="CONNECT_NO6"/>
+		<result property="connect_no7" column="CONNECT_NO7"/>
+		<result property="connect_no8" column="CONNECT_NO8"/>
+	</resultMap>
+	
+<insert id="couponInput" parameterType="java.util.Map">
+   INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
+   SELECT COU_SEQ.NEXTVAL, A.*FROM(
+<foreach collection="clist" item="c"  separator="UNION ALL" >
+   SELECT #{c.cpName} as CP_NAME,
+             #{c.cpDiscount} as  CP_DISCOUNT,
+             SYSDATE as CP_DATE
+   FROM DUAL
+   </foreach>) A
+</insert>
+
+<select id="selectListCoupon" resultMap="CouponResultSet">
+   SELECT * FROM COUPON
+</select>
+
+<delete id="couponDelete" parameterType="String" >
+   DELETE FROM COUPON
+   WHERE CP_NAME = #{cpName}
+</delete>
+
+
+
+<select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
+   SELECT *
+   FROM UP_CATE
+   WHERE UP_USING='Y'
+</select>
+
+<select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
+   SELECT *
+   FROM DOWN_CATE D
+   LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
+   WHERE DOWN_USING='Y'
+</select>
+
+<insert id="UpCategoryInsert" parameterType="UpCategory">
+   INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
+   (#{up_no}, #{up_name}, DEFAULT)
+</insert>
+
+<insert id="DownCategoryInsert" parameterType="DownCategory">
+   INSERT INTO DOWN_CATE
+    VALUES (#{down_no}, #{up_no} ,#{down_name}, 'Y',SYSDATE)
+</insert>
+
+<update id="UpCategoryDelete" parameterType="_int">
+   UPDATE UP_CATE
+   SET UP_USING='N'
+   WHERE UP_NO=#{up_no}
+</update>
+
+
+<update id="DownCategoryDelete" parameterType="DownCategory">
+   UPDATE DOWN_CATE
+   SET DOWN_USING='N'
+   WHERE UP_NO=#{up_no}
+   AND DOWN_NO=#{down_no}
+
+</update>
+
+<!-- <insert id="ProductInsert" parameterType="Product">
+   <selectkey id="prdtNo" resultType="_int" order="BEFORE">
+      SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+   </selectkey>
+   INSERT INTO PRDT
+   VALUES (#{prdtNo}, #{upNo}, #{prdtName}, #{prdtComment}
+         ,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
+         ,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
+         ,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})
+</insert>
+
+<insert id="ProductOptionInsert" parameterType="ProductOption">
+   INSERT INTO PRDT_OPT VALUES
+   (PRODUCT_OPT_SEQ.NEXTVAL,#{prdt_no}, {opt_color}, {opt_size},
+   {opt_stock}, SYSDATE, NULL, #{prdt_code})
+</insert> -->
+
+<update id="DesignEd" parameterType="java.util.Map">
+   <foreach  item="d" collection="dlist"  index="index"
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+   UPDATE MAINDESIGN
+   SET
+   D_ORIFILE=#{d.oriFile},
+   D_REFILE=#{d.reFile},
+   D_COMMENT=#{d.mainComment},
+   D_LINK=#{d.mainLink}
+   WHERE D_NO = #{d.deNo}
+</foreach>
+</update>
+
+<update id="DesignEdVideo" parameterType="Design">
+   UPDATE MAINVIDEO
+   SET VIDEOFILE=#{reFile}
+   WHERE V_NO=1
+</update>
+
+<update id="DesignInsta"  parameterType="java.util.Map">
+<foreach  item="d" collection="dlist"  index="index"
+     separator=";" open="DECLARE BEGIN" close="; END;" >
+   UPDATE INSTADESIGN
+   SET
+   IN_ORIFILE = #{d.oriFile},
+   IN_REFILE = #{d.reFile},
+   IN_LINK = #{d.mainLink},
+   IN_COMMENT = #{d.mainComment}
+   WHERE IN_NO = #{d.deNo}
+</foreach>
+</update>
+<select id="selectMainList" resultMap="MainResultSet" >
+   SELECT * FROM
+   MAINDESIGN
+</select>
+
+<select id="selectVideo" resultMap="VideoResultSet">
+   SELECT * FROM
+   MAINVIDEO
+</select>
+
+<select id="selectInstaList" resultMap="InstaResultSet">
+   SELECT * FROM
+   INSTADESIGN
+</select>
+
+<update id="QnA_ProductUpdate" parameterType="Board">
+		UPDATE QNA
+		SET QNA_INFO=#{content},QNA_CHK='Y'
+		WHERE QNA_NO = #{qna_no}
+</update>
+
+
+
+	<select id="selectOderList1" resultMap="OrdreusltMap1">
+		
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'A'
+	</select>
+
+<update id="orderUpdate1" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'B'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+	<select id="selectOderList2" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'B'
+	</select>
+	
+<update id="orderUpdate2" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'C'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+	<select id="selectOderList3" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'C'
+	</select>
+	
+<update id="orderUpdate3" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'D'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+
+	<select id="selectOderList4" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'D'
+	</select>
+	
+<update id="orderUpdate4" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'E'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+<update id="Designprdt" parameterType="Design">
+	UPDATE PRDT_DESIGN 
+	SET OT_EVENTIMG=#{reFile},OT_EVENT_COMMENT=#{mainComment}
+
+</update>
+
+<select id="selectPrdtImg" resultMap="prdtImgResultSet">
+	SELECT * FROM
+	PRDT_DESIGN
+</select>
+
+
+<select id="couponUpdate" parameterType="java.util.Map">
+<foreach  item="c" collection="cplist"  index="index"
+     separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE COUPON
+	SET CP_DISCOUNT = #{c.cpDiscount}
+	WHERE CP_NO = #{c.cpNo}
+</foreach>
+</select>
+
+
+<select id="productReturnlist" resultMap="ReturnResultMap">
+	SELECT*FROM
+	RETURN
+</select>
+
+<select id="ReturnDetail"  parameterType="Return" resultMap="ReturnResultMap2">
+SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
+	RE.RE_REASON,RE.RE_CHECK,RE.RE_REAL,RE.RE_MENT,RE.RE_STATUS,
+	M.MEM_PHONE,M.MEM_ID,M.MEM_EMAIL,RE.MEM_CODE,
+	O.ORD_ADDRESS,O.ORD_RECEIVER,O.PRDT_NO,O.ORD_SIZE,O.ORD_COLOR,O.ORD_DATE,
+	P.PRDT_NAME,P.PRDT_PRICE,PA.PAY_POINT,PA.PAY_MONEY,PA.PAY_CATEGORY,PA.PAY_YN,
+	CP.CP_DISCOUNT,CP.CP_NAME,CPM.CPMEM_NO
+    FROM RETURN RE
+    JOIN MEMBER M ON (RE.MEM_CODE = M.MEM_NO)
+    JOIN ORD O ON (O.ORD_NO=RE.ORD_CODE)
+    JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO )
+    JOIN PRDT P ON (P.PRDT_NO = O.PRDT_NO )
+    LEFT JOIN COUPON_MEM CPM ON ( CPM.CPMEM_NO = PA.PAY_USEDCP)
+ 	LEFT JOIN COUPON CP ON (CPM.CP_NO = CP.CP_NO)
+ 	WHERE RE.RE_NO=#{reNo}
+</select>
+
+<update id="calcellCoupon" parameterType="_int">
+	UPDATE COUPON_MEM
+	SET CP_USING='N'
+	WHERE CPMEM_NO=#{cpmemNo}
+</update>
+
+
+<update id="cancellPay" parameterType="_int">
+	UPDATE PAY
+	SET PAY_YN='N'
+	WHERE ORD_NO=#{ordCode}
+</update>
+
+<update id="cancellPoint" parameterType="Member">
+	UPDATE MEMBER SET
+			MEM_POINT = (SELECT SUM(MEM_POINT)
+             FROM MEMBER
+             WHERE MEM_NO=#{memNo}) - #{mem_point}
+			WHERE MEM_NO=#{memNo}
+</update>
+
+<update id="ReturnUpdate" parameterType="Return">
+	UPDATE RETURN
+	SET RE_CONTENT=#{content},RE_CHECK=#{reCheck},RE_REAL=#{reReal},RE_STATUS=#{reStatus},RE_MENT=#{reMent}
+	WHERE RE_NO=#{reNo}
+</update>
+
+<update id="updateOrdF" parameterType="Return" >
+	UPDATE ORD
+	SET ORD_STATUS = 'F'
+	WHERE ORD_NO = #{ordCode}
+
+</update>
+
+<update id="updateOrdG" parameterType="Return" >
+	UPDATE ORD
+	SET ORD_STATUS = 'G'
+	WHERE ORD_NO = #{ordCode}
+</update>
+
+<select id="UpCategoryCount" parameterType="_int" resultType="_int" >
+	SELECT COUNT(*)
+	FROM UP_CATE
+	WHERE UP_NO = #{i}
+</select>	
+
+<select id="DownCategoryCount" parameterType="DownCategory" resultType="_int" >
+	SELECT COUNT(*)
+	FROM DOWN_CATE
+	WHERE UP_NO = #{up_no}
+	AND DOWN_NO=#{down_no}
+</select>
+
+
+<insert id="ComentInsert" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},SYSDATE,DEFAULT,RVC_SEQ.NEXTVAL)
+</insert>
+
+<delete id="comentDelete" parameterType="ReviewReply">
+	 DELETE FROM REVIEW_COMMENT
+	 WHERE RVC_NO=#{rvcNo}
+</delete>
+
+<update id="comentReturn"  parameterType="ReviewReply">
+	UPDATE REVIEW_COMMENT
+	SET RV_REPORT='N'
+	WHERE RVC_NO=#{rvcNo}
+</update>
+
+
+<select id="todayReturnSelect" resultType="_int">
+	SELECT COUNT(*)
+	FROM RETURN
+	WHERE RE_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+</select>
+
+<insert id="ConnectSubmit" parameterType="PrdtConnect">
+	INSERT INTO PRDT_CONNECT
+	VALUES (#{selectNo}, 	
+	#{connect_no1},  
+	#{connect_no2}, 
+	#{connect_no3}, 
+	#{connect_no4},
+	#{connect_no5}, 
+	#{connect_no6}, 
+	#{connect_no7}, 
+	#{connect_no8})
+</insert>	
+</mapper>

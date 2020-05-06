@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypageMapper">
+
+	<resultMap id="PointResultSet" type="Point">
+		<id property="ptno" column="POINT_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="ordno" column="ORD_NO"/>
+		<result property="pt_date" column="POINT_DATE"/>
+		<result property="pt_price" column="POINT_PRICE"/>
+		<result property="pt_content" column="POINT_CONTENT"/>
+		<result property="pt_duedate" column="POINT_DUEDATE"/>
+		<result property="pt_part" column="POINT_PART"/>
+	</resultMap>
+
+	<resultMap id="CouponMemResultSet" type="CouponMem">
+		<id property="cpmem_no" column="CPMEM_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="cpno" column="CP_NO"/>
+		<result property="cpdate" column="CP_DATE"/>
+		<result property="cpusing" column="CP_USING"/>
+		<result property="cp_usedate" column="CP_USE_DATE"/>
+		<result property="cpname" column="CP_NAME"/>
+		<result property="cpdiscount" column="CP_DISCOUNT"/>
+	</resultMap>
+
+	<resultMap id="MyBoardResultSet" type="MyBoard">
+		<id property="qna_no" column="QNA_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="b_cate_no" column="B_CATE_NO"/>
+		<result property="b_cate_name" column="B_CATE_NAME"/>
+		<result property="qna_date" column="QNA_DATE"/>
+		<result property="qna_writer" column="QNA_WRITER"/>
+		<result property="qna_title" column="QNA_TITLE"/>
+		<result property="qna_secure" column="QNA_SECURE"/>
+		<result property="qna_chk" column="QNA_CHK"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+
+	</resultMap>
+
+	<resultMap id="ordResultSet" type="Ord">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="ord_detailno" column="ORD_DETAILNO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="ord_date" column="ORD_DATE"/>
+		<result property="ord_receiver" column="ORD_RECEIVER"/>
+		<result property="ord_phone" column="ORD_PHONE"/>
+		<result property="ord_address" column="ORD_ADDRESS"/>
+		<result property="ord_message" column="ORD_MESSAGE"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="ord_size" column="ORD_SIZE"/>
+		<result property="ord_color" column="ORD_COLOR"/>
+		<result property="ord_count" column="ORD_COUNT"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+	</resultMap>
+
+
+	<resultMap id="AddressResultMap" type="Address">
+		<id property="adNo" column="AD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="adTitle" column="AD_TITLE"/>
+		<result property="adReceiver" column="AD_RECEIVER"/>
+		<result property="adAddress" column="AD_ADDRESS"/>
+		<result property="adPhone" column="AD_PHONE"/>
+	</resultMap>
+
+	<resultMap id="DIBSResultMap" type="DIBS">
+		<id property="dibsno" column="DIBS_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="dibs_count" column="DIBS_COUNT"/>
+		<result property="dibs_size" column="DIBS_SIZE"/>
+		<result property="dibs_color" column="DIBS_COLOR"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="dibs_sumprice" column="DIBS_SUMPRICE"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="dibs_date" column="DIBS_DATE"/>
+		<result property="prdt_color" column="OPT_COLOR"/>
+		<result property="prdt_size" column="OPT_SIZE"/>
+		<result property="dibs_price" column="DIBS_PRICE"/>
+	</resultMap>
+	
+	<resultMap type="Cart" id="cartResultSet">
+		<id property = "ca_no" column="CA_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_count" column="PRDT_COUNT"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		<result property="prdt_color" column="PRDT_COLOR"/>
+		<result property="prdt_size" column="PRDT_SIZE"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+	</resultMap>
+	
+	<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvDate2" column="RV_DATE2"/>
+			<result property="prdtImg" column="PRDT_IMAGE"/>
+			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="memno" column="MEM_NO"/>
+			<result property="rvPoint" column="RV_POINT"/>
+	</resultMap>
+	
+	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
+	<select id="PointListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM POINT
+		WHERE MEM_NO=#{memNo}
+	</select>
+
+	<!-- 포인트 내역 출력 -->
+	<select id="PointselectList" resultMap="PointResultSet">
+		SELECT *
+		FROM POINT
+		WHERE MEM_NO=#{memNo}
+		ORDER BY POINT_NO DESC
+	</select>
+
+	<select id="PointUnavailListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM POINT
+		WHERE MEM_NO=#{memNo}
+	</select>
+
+	<select id="PointselectUnavailList" resultMap="PointResultSet">
+		SELECT *
+		FROM POINT
+		WHERE MEM_NO=#{memNo}
+		ORDER BY POINT_NO DESC
+	</select>
+
+	<!-- 사용가능한 쿠폰 출력 -->
+	<select id="CouponListCount" resultType="_int" parameterType="Member">
+		SELECT COUNT(*)
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='N'
+	</select>
+
+	<select id="CouponSelectList" resultMap="CouponMemResultSet">
+		SELECT *
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='N'
+		ORDER BY CPMEM_NO DESC
+	</select>
+
+	<!-- 사용완료한 쿠폰 출력 -->
+	<select id="CompleteCouponListCount" resultType="_int" parameterType="Member">
+		SELECT COUNT(*)
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
+	</select>
+
+	<select id="CompleteCouponSelectList" resultMap="CouponMemResultSet">
+		SELECT *
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
+		ORDER BY CPMEM_NO DESC
+	</select>
+
+<!-- 	<select id="selectPoint" resultType="_int">
+		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum
+		FROM POINT
+		WHERE MEM_NO=#{memNo}
+	</select>
+	 -->
+	 
+	 <!-- 포인트 적립 -->
+	<update id="updatePoint" parameterType="Member">
+		UPDATE MEMBER
+		SET MEM_POINT=(SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum
+		FROM POINT
+		WHERE MEM_NO=#{memNo}) + #{mem_point}
+		WHERE MEM_NO=#{memNo}
+	</update>
+
+	<!-- 내가 쓴 게시글 갯수 출력 -->
+	<select id="selectBoardListCount" resultType="_int">
+		SELECT COUNT(*)
+        FROM QNA Q
+        JOIN BOARD_CATEGORY MB
+        ON (Q.B_CATE_NO = MB.B_CATE_NO)
+        WHERE MEM_NO=#{memNo}
+        ORDER BY QNA_NO DESC
+	</select>
+
+	<!-- 내가 쓴 게시글 리스트 출력 -->
+	<select id="selectBoardList" resultMap="MyBoardResultSet">
+		SELECT *
+        FROM QNA Q
+        JOIN BOARD_CATEGORY MB
+        ON (Q.B_CATE_NO = MB.B_CATE_NO)
+        JOIN PRDT P
+        ON (Q.PRDT_CODE = P.PRDT_NO)
+        WHERE MEM_NO=#{memno}
+        ORDER BY QNA_NO DESC
+	</select>
+
+	<!-- 내가 쓴 게시글 검색한 내용의 갯수 출력 -->
+	<select id="SearchListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNA Q
+		JOIN BOARD_CATEGORY MB
+		ON (Q.B_CATE_NO = MB.B_CATE_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="writer != null">
+		AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+		AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		ORDER BY QNA_NO DESC
+	</select>
+
+	<!-- 내가 쓴 게시글 검색한 리스트 출력 -->
+	<select id="selectSearchList" resultMap="MyBoardResultSet">
+		SELECT *
+		FROM QNA Q
+		JOIN BOARD_CATEGORY MB
+		ON (Q.B_CATE_NO = MB.B_CATE_NO)
+		JOIN PRDT P
+        ON (Q.PRDT_CODE = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="writer != null">
+		AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+		AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		ORDER BY QNA_NO DESC
+	</select>
+
+	<!-- 전체 주문 내역 갯수 출력 -->
+	<select id="getOrderListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
+		ORDER BY ORD_DATE DESC
+	</select>
+
+	<!-- 검색 주문내역  갯수 출력  -->
+	<select id ="SearchOrdListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="start_date == null or end_date == null">
+			<if test="!ord_status.equals('all')">
+				AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		
+		<if test="start_date != null and end_date != null">
+			<if test="ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+			</if>
+
+			<if test="!ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+	</select>
+
+	<!-- 전체 주문 내역 검색 리스트 출력 -->
+	<select id="selectOrderList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		ORDER BY O.ORD_DATE DESC
+	</select>
+
+	<!-- 검색 주문 내역 리스트 출력  -->
+	<select id="selectSearchOrdList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+				<if test="start_date == null or end_date == null">
+			<if test="!ord_status.equals('all')">
+				AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		
+		<if test="start_date != null and end_date != null">
+			<if test="ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+			</if>
+
+			<if test="!ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		ORDER BY O.ORD_DATE DESC
+	</select>
+
+	<!-- 배송 주소지 등록 -->
+	<insert id="mAddressInsert" parameterType="Address">
+		INSERT INTO ADDRESS VALUES
+		(AD_SEQ.NEXTVAL, #{memNo}, #{adTitle},#{adReceiver},#{adAddress},#{adPhone})
+	</insert>
+
+	<!-- 주소지 갯수 출력 -->
+	<select id="getAddressCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(*)
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+
+	</select>
+
+	<!-- 배송 주소지 리스트 출력 -->
+	<select id="selectAddressList" parameterType="Member" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+
+	</select>
+	
+	<!-- 배송 주소지 수정 -->
+	<select id="ModifyAddress" parameterType="_int" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE AD_NO=#{mAddress}
+
+	</select>
+
+	<!-- 배송 주소지 수정 -->
+	<update id="AddressUpdate" parameterType="Address">
+		UPDATE ADDRESS
+		SET AD_TITLE=#{adTitle}, AD_RECEIVER=#{adReceiver}, AD_ADDRESS=#{adAddress},
+		AD_PHONE=#{adPhone}
+		WHERE AD_NO=#{adNo}
+	</update>
+
+	<!-- 배송 주소지 삭제 -->
+	<delete id="AddressDelete" parameterType="java.util.Map">
+		<foreach  item="a" collection="nokArr"  index="index"
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+		DELETE
+		FROM ADDRESS
+		WHERE AD_NO=#{a.adNo}
+		</foreach>
+	</delete>
+
+	<!-- 주문현황 카운트 출력 -->
+	<select id="orderCount1" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'A'
+	</select>
+	
+	<select id="orderCount2" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'B'
+	</select>
+	<select id="orderCount3" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'C'
+	</select>
+	<select id="orderCount4" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'D'
+	</select>
+	<select id="orderCount5" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'E'
+	</select>
+	<select id="orderCount6" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'F'
+	</select>
+	<select id="orderCount7" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'G'
+	</select>
+
+	<!-- 반품관련 주문 내역 갯수 출력 -->
+	<select id="getCancelListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+	</select>
+
+	<!-- 반품관련 주문 내역 리스트 출력 -->
+	<select id="selectCancelList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+		ORDER BY O.ORD_DATE DESC
+
+	</select>
+
+	<!-- 반품 관련 검색 내역 갯수 출력 -->
+	<select id="getSearchCancelCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+	</select>
+	
+	<!-- 반품 관련 검색 내역 리스트 출력 -->
+	<select id="selectSearchCancelList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+	</select>
+
+	<!-- 관심상품 갯수 출력 -->
+	<select id="getWishListCount" resultType="_int">
+	SELECT COUNT(*)
+     FROM DIBS D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     WHERE MEM_NO=#{memno}
+	</select>
+
+	<!-- 반품신청  -->
+	<insert id="ReturnInsert" parameterType="Return">
+		INSERT INTO RETURN VALUES
+		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
+		NULL,NULL,SYSDATE,NULL,'N')
+	</insert>
+		
+	<!-- 관심상품 리스트 출력 -->
+	<select id="selectWishList" resultMap="DIBSResultMap">
+	 SELECT D.*, P.*, (D.DIBS_COUNT*P.PRDT_PRICE) AS DIBS_PRICE, ((D.DIBS_COUNT*P.PRDT_PRICE)+2500) AS DIBS_SUMPRICE
+	    FROM DIBS D
+	    JOIN PRDT P
+	    ON (D.PRDT_NO = P.PRDT_NO)
+	    WHERE MEM_NO=#{memno}
+	    ORDER BY DIBS_NO DESC
+	</select>
+	
+	<!-- 해당 상품번호에 맞는 옵션(색상) 출력 -->
+	<select id="selectOptionList1" resultMap="DIBSResultMap">
+	 SELECT PRDT_NO, OPT_COLOR
+	 FROM PRDT_OPT
+	 WHERE PRDT_NO=#{prdt_no}
+	 GROUP BY PRDT_NO, OPT_COLOR
+	</select>
+	
+	<!-- 해당 상품번호에 맞는 옵션(사이즈) 출력 -->
+	<select id="selectOptionList2" resultMap="DIBSResultMap">
+	 SELECT PRDT_NO, OPT_SIZE
+	 FROM PRDT_OPT
+	 WHERE PRDT_NO=#{prdt_no}
+	 GROUP BY PRDT_NO, OPT_SIZE
+	
+	</select>
+	
+	<!-- 관심상품 인설트 -->
+	<insert id="insertwishlist" parameterType="DIBS">
+	INSERT INTO DIBS
+	VALUES(DIBS_SEQ.NEXTVAL, #{memno}, #{prdt_no},#{dibs_count},#{dibs_color},#{dibs_size},default )
+	</insert>
+	
+	<select id="selectonelist" resultMap="DIBSResultMap">
+	 SELECT *
+     FROM (select * from dibs order by dibs_no desc) D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     where rownum=1
+	</select>
+	
+	<!-- 관심상품 옵션 변경 -->
+	<update id="updatewishlist" parameterType="DIBS">
+		UPDATE DIBS
+		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
+		WHERE DIBS_NO=#{dibsno}
+	</update>
+	
+	<!-- 관심상품 체크박스 선택삭제 -->
+	<delete id="deletewishlist" parameterType="java.util.Map">
+		<foreach item="d" collection="noArr" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+			 DELETE 
+			 FROM DIBS
+			 WHERE DIBS_NO=#{d.dibsno}
+		 </foreach>
+	</delete>
+	
+	<!-- 관심상품 전체 삭제 -->
+	<delete id="deletewishAll" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE MEM_NO=#{memno}
+	</delete>
+	
+	<!-- 관심상품 체크박스 선택한 삭제버튼 눌렀을때 -->
+	<delete id="selectDelete" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{dibsno}
+	</delete>
+	
+	<!-- 관심상품 체크박스 선택한 상품 리스트 출력 -->
+	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
+			SELECT * 
+			FROM DIBS D
+			JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+			WHERE D.DIBS_NO IN
+		 <foreach item="w" index="index" collection="wishArr"
+	                      open="(" separator="," close=")">
+	             	#{w.dibsno}
+         </foreach>
+	</select>
+	
+	<!-- 위에서 선택한 상품 카트에 인서트 -->
+	<insert id="insertCartList" parameterType="java.util.Map">
+		<foreach  item="c" collection="clist"  index="index"
+      		separator=";" open="DECLARE BEGIN" close="; END;" >
+			INSERT INTO CRT
+		 	VALUES(#{c.memNo}, #{c.prdt_no}, #{c.prdt_price}, #{c.prdt_count}, #{c.prdt_sumprice}, 
+				#{c.prdt_color}, #{c.prdt_size}, CA_SEQ.NEXTVAL)
+		</foreach>
+	</insert>
+	
+	<!-- 카트에 들어간 관심상품 삭제-->
+	<delete id="deleteDlist" parameterType="java.util.Map">
+	<foreach item="w" collection="wish" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{w.dibsno}
+	</foreach>
+	</delete>
+	
+	<!-- 체크박스 선택한 상품 정보 출력 -->
+	<select id="selectOneBuynow" resultMap="DIBSResultMap">
+		SELECT * 
+		FROM DIBS D
+		JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+		WHERE D.DIBS_NO = #{dibsno}
+	</select>
+	
+	<!-- 전체 상품 구입 눌렀을 때 -->
+	<select id="selectAllBuyNow" resultMap="DIBSResultMap">
+		SELECT * 
+		FROM DIBS D
+		JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+		WHERE D.MEM_NO = #{memno}
+	</select>
+	
+	<!-- 관심상품 해당 행에 있는 구입버튼 눌렀을때 -->
+	<insert id="InsertOneCart" parameterType="Cart">
+		INSERT INTO CRT
+		 	VALUES(#{memNo}, #{prdt_no}, #{prdt_price}, #{prdt_count}, #{prdt_sumprice}, 
+				#{prdt_color}, #{prdt_size}, CA_SEQ.NEXTVAL)
+	</insert>
+	
+	<!-- 관심상품 해당 행에 있는 삭제버튼 눌렀을때 -->
+	<delete id="deleteOneList" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{dibsno}
+	</delete>
+	
+	<!-- 관심상품 전체 상품 삭제 -->
+	<delete id="deleteAlllist" parameterType="java.util.Map">
+		<foreach item="d" collection="dlist" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+		DELETE
+		FROM DIBS
+		WHERE MEM_NO=#{d.memno}
+		</foreach>
+	</delete>
+	
+	<!-- 내가 쓴 리뷰 전체 카운트 -->
+	<select id="getReviewListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+	</select>
+	
+	<!-- 내가 쓴 리뷰 전체 리스트 -->
+	<select id="selectReviewList" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_NO DESC
+	</select>
+	
+	<select id="getSearchReviewCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		AND R.RV_INFO LIKE '%' || #{search} || '%'
+	</select>
+
+	<select id="selectSearchReviewList" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		AND R.RV_INFO LIKE '%' || #{search} || '%'
+		ORDER BY RV_DATE DESC, RV_NO DESC
+	</select>
+	
+	<select id="selectLastSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_NO DESC
+	</select>
+		
+	<select id="selectLikeSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_LIKE DESC
+	</select>
+	<select id="selectStarSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_POINT DESC
+	</select>
+
+	<select id="resultPoint" parameterType="_int"  resultType="_int">
+		SELECT MEM_POINT
+		FROM MEMBER
+		WHERE MEM_NO=#{memNo}	
+	</select>
+	<delete id="reviewDelete1" parameterType="_int">
+		DELETE 
+		FROM LIKE_HEART
+		WHERE RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete2" parameterType="_int">
+		DELETE 
+		FROM REVIEW_COMMENT
+		WHERE RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete3" parameterType="_int">
+		DELETE 
+		FROM REVIEW_PHOTO
+		WHERE RP_RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete4" parameterType="_int">
+		DELETE 
+		FROM REVIEW
+		WHERE RV_NO=#{rv_no}
+	</delete>
+</mapper>

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+
+body {
+	font-weight : 700;
+}
+
+#memberInf1 {
+	width: 100%;
+	margin-top : 3%;	
+	
+}
+#container {
+	margin : 0 auto;
+}
+.mypage_top {
+	width : 100%;
+	text-align : center;
+	position : relative;
+	right : 37%;
+	margin-top:0%;
+}
+
+#contents {
+	width : 70%;
+	margin : 50px auto 100px;
+}
+
+.titleArea {
+    min-height: 30px;
+    margin: 10px 0 65px;
+    text-align: center;
+}
+
+.titleArea h2 {
+	font-family: 'HelveticaLTPro','Arial';
+    font-size: 39px;
+    color: black;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+    top: -50px;
+    margin-top : 10%;
+}
+
+.mypage_top span {
+	font-weight : 900;
+	font-size : 17px;
+}

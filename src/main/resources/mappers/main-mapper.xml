@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="productMapper">
+		<!-- reusltMap --> 
+		<resultMap type="Product" id="productResultSet">
+			<id property = "prdtNo" column="PRDT_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtComment" column="PRDT_COMMENT"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="prdtMake" column="PRDT_MAKE"/>
+			<result property="prdtImage" column="PRDT_IMAGE"/>
+			<result property="prdtDate" column="PRDT_DATE"/>
+			<result property="prdtModifyDate" column="PRDT_MODIFY_DATE"/>
+			<result property="downNo" column="DOWN_CATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
+			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
+			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+			<result property="prdtSale" column="PRDT_SALE"/>
+			<result property="prdtScount" column="PRDT_SCOUNT"/>
+			<result property="prdtReview" column="PRDT_REVIEW"/>
+			<result property="prdtStatus" column="PRDT_STATUS"/>
+		</resultMap>
+		
+		<resultMap type="Product_opt" id="product_optResultSet">
+			<id property = "optNo" column="OPT_NO"/>
+			<result property="PrdtNo" column="PRDT_NO"/>
+			<result property="optColor" column="OPT_COLOR"/>
+			<result property="size" column="OPT_SIZE"/>
+			<result property="stock" column="OPT_STOCK"/>
+			<result property="optDate" column="OPT_DATE"/>
+			<result property="optModifyDate" column="MODIFY_DATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+		</resultMap>
+		
+		<resultMap type="Product_color" id="product_colorResultSet">
+			<id property = "pcName" column="PC_NAME"/>
+			<result property="pcRgb" column="PC_RGB"/>
+		</resultMap> 
+		
+		<resultMap type="Wish" id="WishResultSet">
+			<id property = "memNo" column="MEM_NO"/>
+			<result property="prdtNo" column="PRDT_NO"/>
+		</resultMap> 
+		
+		<resultMap type="productbenner" id="PBResultSet">
+			<id property = "pbImg" column="OT_EVENTIMG"/>
+			<result property = "pbImgPath" column="OT_EVENTIMG_PATH"/>
+			<result property="pbComment" column="OT_EVENT_COMMENT"/>
+		</resultMap> 
+		
+	 <resultMap type="MaindownCategory" id="MaindownCategoryResultSet">
+			<id property = "downNo" column="DOWN_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="downName" column="DOWN_NAME"/>
+			<result property="downUsing" column="DOWN_USING"/>
+		</resultMap>
+		
+		<resultMap type="MainupCategory" id="MainupCategoryResultSet">
+			<id property = "upNo" column="UP_NO"/>
+			<result property="upName" column="UP_NAME"/>
+			<result property="upUsing" column="UP_USING"/>
+		</resultMap>
+		
+		<resultMap type="Board" id="boardResultSet1">
+			<id property = "qna_no" column="QNA_NO"/>
+			<result property="b_cate_no" column="B_CATE_NO"/>
+			<result property="mem_no" column="MEM_NO"/>
+			<result property="content" column="QNA_INFO"/>
+			<result property="qna_chk" column="QNA_CHK"/>
+			<result property="qna_date" column="QNA_DATE"/>
+			<result property="qna_writer" column="QNA_WRITER"/>
+			<result property="qna_title" column="QNA_TITLE"/>
+			<result property="originalFileName" column="ORIGINAL_FILENAME"/>
+			<result property="renameFileName" column="RENAME_FILENAME"/>
+			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
+			<result property="qna_password" column="QNA_PASSWORD"/>
+			<result property="qna_secure" column="QNA_SECURE"/>
+			<result property="prdt_code" column="PRDT_CODE"/>
+		</resultMap>
+		
+		<resultMap type="productWith" id="pwResultSet">
+			<id property = "prdtNo" column="PRDT_NO"/>
+			<result property="with1" column="CONNECT_NO1"/>
+			<result property="with2" column="CONNECT_NO2"/>
+			<result property="with3" column="CONNECT_NO3"/>
+			<result property="with4" column="CONNECT_NO4"/>
+			<result property="with5" column="CONNECT_NO5"/>
+			<result property="with6" column="CONNECT_NO6"/>
+			<result property="with7" column="CONNECT_NO7"/>
+			<result property="with8" column="CONNECT_NO8"/>
+		</resultMap>
+		
+		<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvDate2" column="RV_DATE2"/>
+			<result property="prdtImg" column="PRDT_IMAGE"/>
+			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="rvPoint" column="RV_POINT"/>
+	</resultMap>
+	
+	<resultMap type="Like_Heart" id="LikeResultSet">
+			<id property = "likeNo" column="LIKE_NO"/>
+			<result property="rvNo" column="RV_NO"/>
+			<result property="memNo" column="MEM_NO"/>
+			<result property="likeCheck" column="LIKE_CHECK"/>
+	</resultMap>
+ 
+ <resultMap type="ReviewReply" id="ReviewReplyResultSet">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="rvComment" column="RV_COMMENT_INFO"/>
+		<result property="rvDate" column="RV_DATE"/>
+		<result property="rvReport" column="RV_REPORT"/>
+		<result property="rvcNo" column="RVC_NO"/>
+		<result property="memName" column="MEM_NAME"/>
+	
+	</resultMap>
+	
+	<resultMap type="Review_Photo" id="ReviewPhotoResultSet">
+			<id property = "rpNo" column="RP_NO"/>
+			<result property="rvNo" column="RP_RV_NO"/>
+			<result property="rpPhoto" column="RP_PHOTO"/>
+		</resultMap>
+		
+		<resultMap type="Review_count" id="ReviewCountResultSet">
+			<id property="prdt_code" column="PRDT_CODE"/>
+			<result property="count" column="PC"/>
+		</resultMap>
+ 
+ <select id="selectUserName" parameterType="_int" resultType="String">
+ SELECT MEM_NAME
+ FROM MEMBER
+ WHERE MEM_NO = #{memCode}
+ </select>
+	
+		<select id="selectQnaListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM QNA
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+		<select id="getReviewListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM REVIEW
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+		<select id="selectPoint" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		</select>
+		<select id="selectPoint1" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+		<select id="selectPoint2" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		ORDER BY RV_LIKE DESC
+		</select>
+		<select id="selectPoint3" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		ORDER BY RV_POINT DESC
+		</select>
+		
+		<select id="selectDetailReviewWriteCheck" parameterType="ReviewCheck" resultType="_int">
+	  	SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND PRDT_NO = #{prdtNo}
+		</select>
+		
+		<select id="getOrdNo" parameterType="ReviewCheck" resultType="_int">
+	  	SELECT COUNT(ORD_DETAILNO)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND PRDT_NO = #{prdtNo}
+		</select>
+		
+		<select id="getRvNo" parameterType="ReviewCheck" resultType="_int">
+	  	SELECT RV_NO
+		FROM REVIEW
+		WHERE MEM_CODE = #{memNo}
+		AND PRDT_CODE = #{prdtNo}
+		</select>
+		
+	<select id="selectQnaList" parameterType="_int" resultMap="boardResultSet1">
+	  	SELECT *
+	  	FROM QNA
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+	<select id="selectWithList" parameterType="_int" resultMap="pwResultSet">
+	  	SELECT *
+		FROM PRDT_CONNECT
+		WHERE PRDT_NO = #{product_detail}
+		</select>
+		
+	<select id="selectDetailListp" parameterType="_int" resultMap="productResultSet">
+	  	SELECT *
+		FROM PRDT
+		WHERE PRDT_NO = #{with}
+		</select>
+	
+		<select id="getListCount1" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE UP_NO = #{product1}
+	  	AND PRDT_STATUS = 'Y'
+		</select>
+		
+		<select id="getListCount2" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE PRDT_NO LIKE #{product2}||'%'
+	  	AND PRDT_STATUS = 'Y'
+		</select>
+		
+		<select id="getSearchListCount" parameterType="String" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE PRDT_NAME LIKE '%'||#{search}||'%'
+	  	AND PRDT_STATUS = 'Y'
+		</select>
+  
+		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE UP_NO = #{product1}
+		AND PRDT_STATUS = 'Y'
+		ORDER BY PRDT_NO DESC
+		</select>
+		
+		<select id="selectProductDetail" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO = #{product_detail}
+		</select>
+		
+		<select id="selectProduct2" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
+		ORDER BY PRDT_NO DESC
+		</select>
+		
+		<select id="selectSearchProduct" parameterType="String" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NAME LIKE '%'||#{search}||'%'
+		AND PRDT_STATUS = 'Y'
+		ORDER BY PRDT_NO DESC
+		</select>
+		
+	 	<select id="selectProductOption1" parameterType="_int" resultMap="product_optResultSet">
+		SELECT PRDT_NO, OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE #{product1}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
+		</select>
+		
+		<select id="selectProductOption" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_COLOR
+		</select>
+		<select id="selectProductOption22" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_COLOR
+		</select>
+		<select id="selectProductOption33" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_SIZE
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_SIZE
+		</select>
+		<select id="selectProductColor3" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT PC.PC_RGB PC_RGB
+		FROM PRDT P
+		JOIN PRDT_OPT PO ON (P.PRDT_NO = PO.PRDT_NO)
+		JOIN P_COLOR PC ON (PO.OPT_COLOR = PC.PC_NAME)
+		WHERE P.PRDT_NO = #{product_detail}
+		GROUP BY PC.PC_RGB
+		
+		
+		</select>
+		
+		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
+		SELECT PRDT_NO, OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
+		</select>
+		
+		
+		
+		<select id="selectSearchProductOption" parameterType="String" resultMap="product_optResultSet">
+		SELECT P.PRDT_NO PRDT_NO, PO.OPT_COLOR OPT_COLOR
+		FROM PRDT P
+        JOIN PRDT_OPT PO ON(P.PRDT_NO = PO.PRDT_NO)
+		WHERE P.PRDT_NAME LIKE '%'||#{search}||'%'
+		GROUP BY P.PRDT_NO, PO.OPT_COLOR
+		</select>
+		
+		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM P_COLOR
+		
+		</select>
+		
+		<select id="selectProductColor2" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM P_COLOR
+		
+		</select>
+		
+<select id="selectPB" resultMap="PBResultSet">
+		SELECT *
+		FROM PRDT_DESIGN
+		
+		</select>
+	
+  		<select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product1}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory1" parameterType="_int" resultMap="MainupCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		</select> 
+		
+		<select id="selectCategory2" parameterType="_int" resultMap="MaindownCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product2}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory2" parameterType="_int" resultMap="MainupCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
+		
+		<select id="selectCategory3" parameterType="_int" resultMap="MaindownCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE DOWN_USING = 'Y'
+		</select> 
+		
+		 <select id="selectUpCategory3" parameterType="_int" resultMap="MainupCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
+		
+		<select id="selectSortProduct1" parameterType="MainSearchCondition" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE UP_NO = #{product1}
+		AND PRDT_STATUS = 'Y'
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
+		ORDER BY PRDT_PRICE ASC
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
+		</select>
+		
+		<select id="selectSortProduct2" parameterType="MainSearchCondition" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
+		ORDER BY PRDT_PRICE ASC
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
+		</select>
+		
+		<select id="ProductSelectList" resultMap="productResultSet">
+			SELECT * FROM PRDT
+		</select>
+		
+		<update id="ProductDelete" parameterType="_int">
+			UPDATE PRDT
+			SET PRDT_STATUS='N'
+			WHERE PRDT_NO=#{prdtNo}
+		</update>
+		<select id="selectWish" parameterType="_int" resultMap="WishResultSet">
+		SELECT MEM_NO,PRDT_NO
+		FROM DIBS
+		WHERE MEM_NO = #{memNo}
+		</select>
+		
+		<insert id="insertWish" parameterType="Wish">
+		INSERT INTO DIBS
+		VALUES(DIBS_SEQ.NEXTVAL,#{memNo},#{prdtNo},DEFAULT,NULL,NULL,DEFAULT)
+		</insert>
+		
+		<insert id="ProductInsert" parameterType="Product">
+		INSERT INTO PRDT
+		VALUES (#{upNo}||#{downNo}||PRODUCT_SEQ.NEXTVAL, #{upNo}, #{prdtName}, #{prdtComment}
+				,#{prdtPrice}, NULL, NULL, #{prdtImage}
+				,SYSDATE, NULL, DEFAULT, #{downNo}, PRODUCT_SEQ.NEXTVAL
+				,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
+				,#{prdtSale}, DEFAULT,DEFAULT, DEFAULT)	 
+		</insert>
+		
+		<insert id="insertCart" parameterType="Cart">
+		INSERT INTO CRT
+		VALUES (#{memNo},#{prdt_no},#{prdt_price},1,#{prdt_sumprice},#{prdt_color},#{prdt_size},CA_SEQ.NEXTVAL)	 
+		</insert>
+
+		<select id="selectPrdtNo" resultMap="productResultSet">
+			SELECT *
+			FROM (SELECT *
+            	  FROM PRDT
+             	  ORDER BY PRDT_DATE DESC)
+			WHERE ROWNUM=1
+		</select>
+		
+		<insert id="insertPotList" parameterType="java.util.Map">
+			INSERT INTO PRDT_OPT (OPT_NO,PRDT_NO, OPT_COLOR, OPT_SIZE, OPT_STOCK)
+			SELECT OPT_SEQ.NEXTVAL, A.*FROM(
+			<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+		</insert>
+		
+		<select id="ProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+		</select>
+		
+		<select id="listProductSelectList" resultMap="productResultSet">
+			SELECT *
+			FROM PRDT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
+		<select id="listProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
+		<select id="ProductSelectListBest" resultMap="productResultSet">
+			SELECT *
+			FROM PRDT
+			ORDER BY PRDT_SCOUNT DESC
+		</select>
+		<insert id="detailReviewInsert" parameterType="DetailReview">
+			INSERT INTO REVIEW
+			VALUES(RV_SEQ.NEXTVAL,#{prdtNo},#{memNo},#{rvHeight},#{rvWeight},#{ordNo},#{rvInfo},#{fileName},DEFAULT,SYSDATE,#{rvColor},#{rvSize},#{rvPoint})
+		</insert>
+		
+		<insert id="detailReviewPhotoInsert" parameterType="DetailReview">
+			INSERT INTO REVIEW_PHOTO
+			VALUES(RP_SEQ.NEXTVAL,#{rvNo},#{fileName})
+		</insert>
+		<insert id="detailReviewPhotoInsert2" parameterType="DetailReview">
+			INSERT INTO REVIEW_PHOTO
+			VALUES(RP_SEQ.NEXTVAL,#{rvNo},#{fileName2})
+		</insert>
+		<update id="updateReviewCount" parameterType="DetailReview">
+			UPDATE PRDT
+			SET PRDT_REVIEW = PRDT_REVIEW+1
+			WHERE PRDT_NO=#{prdtNo}
+		</update>
+		
+		<select id="topSelect" resultMap="productResultSet">
+			 <![CDATA[
+			 SELECT * 
+    		 FROM (SELECT *
+                   FROM PRDT 
+                   ORDER BY PRDT_SCOUNT DESC)
+   			WHERE ROWNUM<=5]]>
+		</select>
+		
+ 	<select id="selectCheckSort1" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT <= 149
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort2" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 150 AND 155
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort3" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 155 AND 160
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort4" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 160 AND 165
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort5" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 165 AND 170
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort6" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT >= 170
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	
+ 	<select id="selectWeightSort7" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT <=39
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 
+ <select id="selectWeightSort8" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 40 AND 45
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort9" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 45 AND 50
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort10" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 50 AND 55
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort11" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 55 AND 60
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort12" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT >= 60
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort13" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'XS'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort14" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'S'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	
+ 	<select id="selectSizeSort15" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'M'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort16" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'L'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort17" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'XL'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort18" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'F'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{prdtNo}
+	</select>
+	
+	<update id="ProductUpdate" parameterType="Product">
+		UPDATE PRDT SET
+		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
+		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
+		WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
+	<update id="ProductUpdate2" parameterType="Product">
+		UPDATE PRDT SET
+		PRDT_NAME=#{prdtName},PRDT_COMMENT=#{prdtComment},
+		PRDT_DETAIL_IMAGE=#{prdtDetailImage} , PRDT_IMAGE=#{prdtImage},
+		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
+		WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
+	<update id="UpdatePotList" parameterType="Product_opt">
+		UPDATE PRDT_OPT SET
+		<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+	</update>
+	
+
+<select id="selectLikeCount" resultType="_int" parameterType="Like_Heart">
+ 		SELECT COUNT(*)
+ 		FROM LIKE_HEART
+ 		WHERE RV_NO = #{rvNo} 
+ 		AND MEM_NO = #{memNo}
+ 	
+ 	</select>
+ 	
+ 	<insert id="insertLike" parameterType="Like_Heart">
+ 		INSERT INTO LIKE_HEART
+ 		VALUES (LIKE_SEQ.NEXTVAL,#{rvNo},#{memNo},DEFAULT)
+ 	</insert>
+ 	
+ 	<select id="selectLike" resultMap="LikeResultSet" parameterType="Like_Heart">
+ 		SELECT * 
+ 		FROM LIKE_HEART
+ 		WHERE RV_NO = #{rvNo} 
+ 		AND MEM_NO = #{memNo}
+ 	</select>
+ 	
+ 	<select id="selectReviewDetail" resultMap="ReviewResultSet">
+ 		  SELECT RV_NO,RV_INFO,MEM_NAME,TO_CHAR(RV_DATE,'YYYY-MM-DD') AS RV_DATE2 ,
+ 		  PRDT_NAME,RV_COLOR,RV_SIZE,RV_HEIGHT,RV_WEIGHT,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_LIKE,RE.PRDT_CODE,RE.RV_POINT
+ 		  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+ 		  WHERE RE.RV_NO = #{rvNo}
+ 	</select>
+ 	
+ 	<select id="selectReviewPhoto" parameterType="_int" resultMap="ReviewPhotoResultSet">
+			SELECT *
+			FROM REVIEW_PHOTO 			
+ 			WHERE RP_RV_NO = #{rvNo}
+ 		
+ 		</select>	
+
+<update id="updateLikeCheck" parameterType="Like_Heart">
+ 		UPDATE LIKE_HEART
+ 		SET LIKE_CHECK = 'Y'
+ 		WHERE RV_NO = #{rvNo} 
+ 		AND MEM_NO = #{memNo}
+ 	</update>
+ 
+ 	<update id ="updateLikeCount" parameterType="_int">
+ 		UPDATE REVIEW 
+ 		SET RV_LIKE =(SELECT RV_LIKE FROM REVIEW WHERE RV_NO=#{rvNo}) +1
+ 		WHERE RV_NO = #{rvNo}
+ 		
+ 	</update>
+ 	
+ 		<update id="updateLikeCheck2" parameterType="Like_Heart">
+ 		UPDATE LIKE_HEART
+ 		SET LIKE_CHECK = 'N'
+ 		WHERE RV_NO = #{rvNo} 
+ 		AND MEM_NO = #{memNo}
+ 	</update>
+ 
+ 	<update id ="updateLikeCount2" parameterType="_int">
+ 		UPDATE REVIEW 
+ 		SET RV_LIKE =(SELECT RV_LIKE FROM REVIEW WHERE RV_NO=#{rvNo}) -1
+ 		WHERE RV_NO = #{rvNo}
+ 		
+ 	</update>
+ 	
+ 	
+ 	<insert id="insertReply" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},SYSDATE,DEFAULT,RVC_SEQ.NEXTVAL)
+
+ 	</insert>
+ 	
+ 	<select id="selectReplyList" parameterType="_int" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO
+   		 FROM REVIEW_COMMENT RVC
+         JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
+           WHERE RVC.RV_NO = #{rv_no}
+          ORDER BY RVC.RV_DATE DESC
+ 	</select>
+ 	
+ 	<delete id ="DeleteReply" parameterType="ReviewReply">
+ 		DELETE FROM REVIEW_COMMENT
+ 		WHERE RVC_NO = #{rvcNo}
+ 	
+ 	</delete>
+ 	
+ 	<update id="WarningReply" parameterType="ReviewReply">
+ 		UPDATE REVIEW_COMMENT
+ 		SET RV_REPORT ='Y'
+ 		WHERE RVC_NO = #{rvcNo}
+ 	</update>
+ 	
+ 		<select id="selectProductMain" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+            	WHERE UP_NO = 5
+             	AND PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_NO DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 8
+		</select>
+ 	
+ 	 	<select id="selectProductOptionMain" parameterType="_int" resultMap="product_optResultSet">
+		SELECT PRDT_NO, OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE 5||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
+		</select>
+		
+			<select id="selectProductMain2" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+            	WHERE UP_NO = 6
+            	AND DOWN_CATE = 2
+             	AND PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_NO DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 8
+		</select>
+		
+		<select id="selectProductMain3" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+             	WHERE PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_SCOUNT DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 3
+		</select>
+		
+		<select id="selectProduct" parameterType="Product" resultMap="productResultSet">
+			SELECT * FROM
+			PRDT
+			WHERE PRDT_NO = #{prdtNo}
+		</select>
+ 	
+
+</mapper>

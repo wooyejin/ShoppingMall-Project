@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+#myshopMain {
+	margin : 50px 0 80px;
+	text-align : center;
+}
+
+#myshopMain .shopMain {
+    display: inline-block;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    line-height: 10px;
+}
+
+#myshopMain .shopMain a {
+    padding: 6px 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-decoration : none;
+    font-weight : 600;
+    color : black;
+}
+
+#myshopMain .shopMain a:hover {
+	color: rgba(230,106,87,1);
+}
+
+.xans-myshop-orderstate .desc {
+    padding: 0 0 0 4px;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+.xans-myshop-orderstate {
+    width: 100%;
+    margin: 70px auto 230px;
+    border: 1px solid #ddd;
+}
+
+.xans-myshop-orderstate .title {
+    padding: 30px 20px 14px 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.xans-myshop-orderstate .title h3 {
+    padding: 0;
+    font-size: 14px;
+    font-weight : 700;
+}
+
+.xans-myshop-orderstate .state {
+    overflow: hidden;
+    padding: 10px 0 20px 0;
+}
+
+.xans-myshop-orderstate .order li {
+    float: left;
+    width: 25%;
+    padding: 0 0 4px;
+    text-align: center;
+}
+
+.xans-myshop-orderstate .order {
+    float: left;
+    width: 80%;
+}
+
+.xans-myshop-orderstate .order .count {
+    font-size: 15px;
+}
+
+.xans-myshop-orderstate .cs {
+    float: left;
+    width: 20%;
+}
+
+.xans-myshop-orderstate .order li strong {
+    display: block;
+    font-weight: normal;
+    margin: 8px 0 10px;
+}
+
+.xans-myshop-orderstate .cs li {
+    margin: 0 0 5px 57px;
+    letter-spacing: 0.04em;
+    word-spacing: 4px;
+}
+
+.xans-myshop-orderstate .cs .icoDot {
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 6px 0 0 0;
+    background: #4d4d4d;
+    vertical-align: top;
+}
+
+.xans-myshop-orderstate .desc {
+    padding: 0 0 0 4px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.xans-myshop-orderstate .desc em {
+    font-style: normal;
+}
+
+.count {
+	font-size : 14px;
+	font-weight : 700;
+	color : black;
+}
+
+.xans-myshop-orderstate .cs strong {
+    font-weight: normal;
+    font-size: 16px;
+}

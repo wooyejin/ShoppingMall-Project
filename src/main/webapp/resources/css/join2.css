@@ -1,0 +1,345 @@
+@charset "UTF-8";
+
+ a { text-decoration: none; color: black; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:focus { text-decoration: none; }
+    a:hover, a:active { text-decoration: none; }
+ 
+
+h3 {
+	position:relative;
+	font-size:12px;
+	font-weight:600;
+}
+
+
+.jointype:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #d7d5d5;
+    border-top:1px solid #ddd;
+}
+
+.jointype:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #d7d5d5;
+}
+
+
+.required {
+	margin: -16px 0 -9px;
+    text-align: right;
+    top: -17px;
+    position: relative;
+    font-size: 12px;
+    font-weight: 600;
+    left:-23% !important;
+}
+
+th {
+	padding: 11px 52px 10px 18px !important;
+    border-bottom-width: 0 !important;
+    color: #353535 !important;
+    text-align: left !important;
+    font-weight: normal !important;
+    background-color: #fafafa !important;
+    border-bottom: 1px solid #ddd !important;
+    border-right: 1px solid #ddd !important;
+    border-left:1px solid #ddd !important;
+    font-size:12px !important;
+    width:15%;
+  
+}
+
+td {
+	 padding: 10px 10px 9px !important; 
+	 border-bottom: 1px solid #ddd;
+     color: #353535;
+     vertical-align: middle;
+     border-right:1px solid #ddd;
+     width:1000px;
+}
+
+input[type=text] {
+	line-height: 22px;
+    border: 1px solid #ddd;
+    color: #222;
+    font-size: 12px;
+}
+#mobile1 {
+    width: 60px;
+    margin: 0 4px 0 0;
+   	height:26px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+}
+#mobile2, #mobile3 {
+    width: 50px;
+    margin: 0 4px 0 0;
+   	height:23px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+    left: 4px;
+    position: relative;
+}
+
+#idMsg {
+	color:#353535;
+	font-size:12px;
+	font-weight:600;
+}
+
+#postcode1 {
+	width:50px;
+	line-height: 22px;
+    border: 1px solid #ddd;
+    color: #222;
+    font-size: 12px;
+}
+.yg_btn3 {
+    background: #fff;
+    color: #444!important;
+    border-color: #ddd!important;
+}
+.yg_btn_24 {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 14px;
+}
+.yg_btn,  .yg_btn_24 {
+    display: inline-block;
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 0px;
+    font-family: Nanum Gothic;
+}
+
+#address1, #address2 {
+	width: 280px;
+    margin: 5px 0 0;
+    line-height: 22px;
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    color: #222;
+    font-size: 12px;
+}
+input[type=radio] + label, input[type=checkbox] + label {
+    margin: 0 4px 0 2px;
+    font-size:12px;
+    font-weight:600;
+        position: relative;
+    left: -3px;
+}
+
+input[type=radio], input[type=checkbox] {
+    width: 13px;
+    height: 13px;
+    border: 0;
+}
+
+select {
+	height: 26px;
+    border: 1px solid #ddd;
+}
+
+.join_agree {
+	
+    margin: 10px 0 30px;
+    font-weight:500;
+    border-top: 1px solid #ddd;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    width: 1100px;
+    border-bottom: 1px solid #ddd;
+}
+
+p {
+	font-size: 12px;
+    font-weight:500;
+}
+
+.ec-base-chk {
+    display: inline-block;
+    position: relative;
+    margin: 0 8px 0 0;
+    width: 22px;
+    height: 22px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.ec-base-chk input {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ec-base-chk .checkbox {
+    position: absolute;
+    top: -1px;
+    left: 14px;
+    width: 100%;
+    height: 100%;
+    background: url(/ot/resources/images/checkbox.png) no-repeat 0 0;
+    top:13px;
+}
+
+.ec-base-chk input:checked + .checkbox {
+    background-position: 0px 0;
+    background: url(/ot/resources/images/checkbox2.png) no-repeat 0 0;
+}
+
+
+.ec-base-box.typeThinBg {
+    border-width: 1px;
+    border-color: #ddd;
+    background-color: #fafafa;
+    display: inline-block;
+}
+
+.agreeArea.width_50 {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    position:relative;
+    top:1px;
+}
+
+.agreeArea .content {
+    overflow: auto;
+    height: 110px;
+    padding: 20px;
+    border: 1px solid #d5d5d5;
+    background: #fff;
+    position: relative;
+    left: 27px;
+    width:485px;
+}
+
+.check {
+    padding: 7px 0 0 0;
+    color: #202020;
+    font-size: 12px;
+}
+.ec-base-box.gStrong {
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    padding: 0 0 0 12px;
+    width:1100px;
+    border-bottom:1px solid #ddd;
+    height:51px;
+}
+
+.agreeArea .check {
+    padding: 7px 0 0 0;
+    color: #202020;
+    font-size: 12px;
+    position: relative;
+    left: 27px;
+    top:-9px;
+}
+
+.agreeArea .content p {
+    padding: 0 0 4px;
+   font-size: 12px;
+    font-weight: 500;
+    color: #353535;
+    
+}
+
+#content2 {
+    overflow: auto;
+    height: 146px;
+    padding: 10px;
+    border: 1px solid #d5d5d5;
+    background: #fff;
+    position: relative;
+    left: 27px;
+    width:1018px;
+}
+
+.ec-base-button {
+    padding: 30px 0;
+    text-align: center;
+    font-family: 'HelveticaLTPro-bold';
+    position: relative;
+    left: -420px;
+}
+
+.yg_btn_140 {
+    height: 38px;
+    width: 140px;
+    line-height: 38px;
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+    border: 1px solid #444;
+    background: #000;
+    color: #fff;
+    border-radius: 0px;
+    font-family: Nanum Gothic
+}
+
+.check_btn_140 {
+	height: 29px;
+    width: 82px;
+    line-height: 38px;
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+    border: 1px solid #444;
+    background: #000;
+    color: #fff;
+    border-radius: 0px;
+    font-family: Nanum Gothic
+}
+
+#idMsg2 {
+	    color: #fff;
+    position: relative;
+    top: -5px;
+    font-size:12px;
+}
+table {
+    border-spacing:0;
+}
+
+table td, table th {
+    padding:0px;
+}
+
+#id_bank_info {
+	font-size:13px;
+}
+
+.displaynone {
+	display : none;	
+}

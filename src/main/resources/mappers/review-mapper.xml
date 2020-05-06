@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewMapper">
+
+ 	<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvDate2" column="RV_DATE2"/>
+			<result property="prdtImg" column="PRDT_IMAGE"/>
+			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="rvPoint" column="RV_POINT"/>
+	</resultMap>
+
+	<resultMap type="Like_Heart" id="LikeResultSet">
+			<id property = "likeNo" column="LIKE_NO"/>
+			<result property="rvNo" column="RV_NO"/>
+			<result property="memNo" column="MEM_NO"/>
+			<result property="likeCheck" column="LIKE_CHECK"/>
+	</resultMap>
+
+
+	<resultMap type="ReviewReply" id="ReviewReplyResultSet">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="rvComment" column="RV_COMMENT_INFO"/>
+		<result property="rvDate" column="RV_DATE"/>
+		<result property="rvReport" column="RV_REPORT"/>
+		<result property="rvcNo" column="RVC_NO"/>
+		<result property="memName" column="MEM_NAME"/>
+
+	</resultMap>
+
+	<resultMap type="Product" id="productResultSet">
+			<id property = "prdtNo" column="PRDT_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtComment" column="PRDT_COMMENT"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="prdtMake" column="PRDT_MAKE"/>
+			<result property="prdtImage" column="PRDT_IMAGE"/>
+			<result property="prdtDate" column="PRDT_DATE"/>
+			<result property="prdtModifyDate" column="PRDT_MODIFY_DATE"/>
+			<result property="downNo" column="DOWN_CATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
+			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
+			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+			<result property="prdtSale" column="PRDT_SALE"/>
+			<result property="prdtScount" column="PRDT_SCOUNT"/>
+			<result property="prdtReview" column="PRDT_REVIEW"/>
+			<result property="prdtStatus" column="PRDT_STATUS"/>
+		</resultMap>
+
+		<resultMap type="Product_opt" id="product_optResultSet">
+			<id property = "optNo" column="OPT_NO"/>
+			<result property="PrdtNo" column="PRDT_NO"/>
+			<result property="optColor" column="OPT_COLOR"/>
+			<result property="size" column="OPT_SIZE"/>
+			<result property="stock" column="OPT_STOCK"/>
+			<result property="optDate" column="OPT_DATE"/>
+			<result property="optModifyDate" column="MODIFY_DATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+		</resultMap>
+
+		<resultMap type="Product_color" id="product_colorResultSet">
+			<id property = "pcName" column="PC_NAME"/>
+			<result property="pcRgb" column="PC_RGB"/>
+		</resultMap>
+
+		<resultMap type="MainupCategory" id="MainupCategoryResultSet">
+			<id property = "upNo" column="UP_NO"/>
+			<result property="upName" column="UP_NAME"/>
+			<result property="upUsing" column="UP_USING"/>
+		</resultMap>
+
+		<resultMap type="Review_Photo" id="ReviewPhotoResultSet">
+			<id property = "rpNo" column="RP_NO"/>
+			<result property="rvNo" column="RP_RV_NO"/>
+			<result property="rpPhoto" column="RP_PHOTO"/>
+		</resultMap>
+
+		<resultMap type="Review_count" id="ReviewCountResultSet">
+			<id property="prdt_code" column="PRDT_CODE"/>
+			<result property="count" column="PC"/>
+		</resultMap>
+
+
+ 	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
+		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE,RV_POINT,
+      RV_HEIGHT,RV_WEIGHT,RV_SIZE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+ 	</select>
+
+
+ 	<select id="selectReviewDetail" resultMap="ReviewResultSet">
+ 		  SELECT RV_NO,RV_INFO,MEM_NAME,TO_CHAR(RV_DATE,'YYYY-MM-DD') AS RV_DATE2 ,
+ 		  PRDT_NAME,RV_COLOR,RV_SIZE,RV_HEIGHT,RV_WEIGHT,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_LIKE,RE.PRDT_CODE,RV_POINT
+ 		  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+ 		  WHERE RE.RV_NO = #{rv_no}
+ 	</select>
+
+
+ 	<select id="selectLikeCount" resultType="_int" parameterType="Like_Heart">
+ 		SELECT COUNT(*)
+ 		FROM LIKE_HEART
+ 		WHERE RV_NO = #{rvNo}
+ 		AND MEM_NO = #{memNo}
+
+ 	</select>
+
+ 	<insert id="insertLike" parameterType="Like_Heart">
+ 		INSERT INTO LIKE_HEART
+ 		VALUES (LIKE_SEQ.NEXTVAL,#{rvNo},#{memNo},DEFAULT)
+ 	</insert>
+
+ 	<select id="selectLike" resultMap="LikeResultSet" parameterType="Like_Heart">
+ 		SELECT *
+ 		FROM LIKE_HEART
+ 		WHERE RV_NO = #{rvNo}
+ 		AND MEM_NO = #{memNo}
+ 	</select>
+
+ 	<update id="updateLikeCheck" parameterType="Like_Heart">
+ 		UPDATE LIKE_HEART
+ 		SET LIKE_CHECK = 'Y'
+ 		WHERE RV_NO = #{rvNo}
+ 		AND MEM_NO = #{memNo}
+ 	</update>
+
+ 	<update id ="updateLikeCount" parameterType="_int">
+ 		UPDATE REVIEW
+ 		SET RV_LIKE =(SELECT RV_LIKE FROM REVIEW WHERE RV_NO=#{rv_no}) +1
+ 		WHERE RV_NO = #{rv_no}
+
+ 	</update>
+
+ 		<update id="updateLikeCheck2" parameterType="Like_Heart">
+ 		UPDATE LIKE_HEART
+ 		SET LIKE_CHECK = 'N'
+ 		WHERE RV_NO = #{rvNo}
+ 		AND MEM_NO = #{memNo}
+ 	</update>
+
+ 	<update id ="updateLikeCount2" parameterType="_int">
+ 		UPDATE REVIEW
+ 		SET RV_LIKE =(SELECT RV_LIKE FROM REVIEW WHERE RV_NO=#{rv_no}) -1
+ 		WHERE RV_NO = #{rv_no}
+
+ 	</update>
+
+ 	<insert id="insertReply" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},SYSDATE,DEFAULT,RVC_SEQ.NEXTVAL)
+
+ 	</insert>
+
+ 	<select id="selectReplyList" parameterType="_int" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO
+   		 FROM REVIEW_COMMENT RVC
+         JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
+           WHERE RVC.RV_NO = #{rv_no}
+          ORDER BY RVC.RV_DATE DESC
+ 	</select>
+
+ 	<delete id ="DeleteReply" parameterType="ReviewReply">
+ 		DELETE FROM REVIEW_COMMENT
+ 		WHERE RVC_NO = #{rvcNo}
+
+ 	</delete>
+
+ 	<update id="WarningReply" parameterType="ReviewReply">
+ 		UPDATE REVIEW_COMMENT
+ 		SET RV_REPORT ='Y'
+ 		WHERE RVC_NO = #{rvcNo}
+
+ 	</update>
+
+ 	<select id="LikeSort" parameterType="_int" resultMap="ReviewResultSet">
+ 		 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE
+      	  ,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RE.RV_LIKE DESC
+
+ 	</select>
+
+ 	<select id="DateSort" parameterType="_int" resultMap="ReviewResultSet">
+ 		 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE
+      	  ,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RE.RV_DATE DESC
+ 	</select>
+
+ 	<select id="selectCheckSort1" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,
+ 		RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT <= 149
+        ]]>
+ 	</select>
+
+ 	<select id="selectCheckSort2" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 150 AND 155
+        ]]>
+ 	</select>
+
+ 	<select id="selectCheckSort3" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 155 AND 160
+        ]]>
+ 	</select>
+
+ 	<select id="selectCheckSort4" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 160 AND 165
+        ]]>
+ 	</select>
+
+ 	<select id="selectCheckSort5" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 165 AND 170
+        ]]>
+ 	</select>
+
+ 	<select id="selectCheckSort6" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT >= 170
+        ]]>
+ 	</select>
+
+
+ 	<select id="selectWeightSort7" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT <=39
+        ]]>
+ 	</select>
+
+ <select id="selectWeightSort8" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 40 AND 45
+        ]]>
+ 	</select>
+
+ 	<select id="selectWeightSort9" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 45 AND 50
+        ]]>
+ 	</select>
+
+ 	<select id="selectWeightSort10" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 50 AND 55
+        ]]>
+ 	</select>
+
+ 	<select id="selectWeightSort11" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 55 AND 60
+        ]]>
+ 	</select>
+
+ 	<select id="selectWeightSort12" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT >= 60
+        ]]>
+ 	</select>
+
+ 	<select id="selectSizeSort13" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'XS'
+        ]]>
+ 	</select>
+
+ 	<select id="selectSizeSort14" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'S'
+        ]]>
+ 	</select>
+
+
+ 	<select id="selectSizeSort15" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'M'
+        ]]>
+ 	</select>
+
+ 	<select id="selectSizeSort16" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'L'
+        ]]>
+ 	</select>
+
+ 	<select id="selectSizeSort17" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'XL'
+        ]]>
+ 	</select>
+
+ 	<select id="selectSizeSort18" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'F'
+        ]]>
+ 	</select>
+
+ 	<select id="selectBestList" resultMap="productResultSet">
+		<![CDATA[
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO >=51001
+		AND PRDT_NO <=51008
+		]]>
+		</select>
+
+		<select id="selectOptionBestList" resultMap="product_optResultSet">
+		<![CDATA[
+		SELECT PRDT_NO, OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO >=51001
+		AND PRDT_NO <=51008
+		GROUP BY PRDT_NO, OPT_COLOR
+		]]>
+		</select>
+
+		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM P_COLOR
+
+		</select>
+
+		<select id="selectCategoryList" resultMap="MainupCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		</select>
+
+ 		<select id="selectCategoryReview" parameterType="_int" resultMap="ReviewResultSet">
+ 		SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE,RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE PR.UP_NO = #{upNo}
+
+ 		</select>
+
+ 		<select id="selectAllSort" parameterType="_int" resultMap="ReviewResultSet">
+ 			 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE,RV_IMAGE,RE.PRDT_CODE, RV_POINT
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RV_POINT DESC
+
+ 		</select>
+
+ 		<select id="selectReviewPhoto" parameterType="_int" resultMap="ReviewPhotoResultSet">
+			SELECT *
+			FROM REVIEW_PHOTO
+ 			WHERE RP_RV_NO = #{rv_no}
+
+ 		</select>
+
+ 		<select id="selectReviewCount" resultMap="ReviewCountResultSet">
+ 			    select prdt_code,count(prdt_code) AS PC
+  				from review
+    			group by prdt_code
+
+ 		</select>
+
+ 		<select id="selectReviewReportList" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO,RVC.RV_DATE
+   		 FROM REVIEW_COMMENT RVC
+         JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
+         WHERE RVC.RV_REPORT = 'Y'
+ 		</select>
+
+
+		<select id="selectListCount" resultType="_int">
+		select count(*)
+		from review
+
+		</select>
+
+ </mapper>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="memberMapper">
+
+	<resultMap id="memberResultSet" type="Member">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memSsn" column="MEM_SSN"/>
+		<result property="memAddress" column="MEM_ADDRESS"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memSumMoney" column="MEM_SUMMONEY"/>
+		<result property="memOwner" column="MEM_OWNER"/>
+		<result property="bank" column="BANK"/>
+		<result property="returnBank" column="RETURN_BANK"/>
+		<result property="mem_status" column="MEM_STATUS"/>
+		<result property="mem_point" column="MEM_POINT"/>
+	</resultMap>
+
+
+	<resultMap id="memberdailyCheck" type="Member">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="tdDate" column="TC_DATE"/>
+	</resultMap>
+
+	<resultMap id="CouponMemResultMap" type="CouponMem">
+		<id property="cpmem_no" column="CPMEM_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="cpno" column="CP_NO"/>
+		<result property="cpdate" column="CP_DATE"/>
+		<result property="cpusing" column="CP_USING"/>
+		<result property="cp_usedate" column="CP_USE_DATE"/>
+	</resultMap>
+
+
+<select id ="loginMember" parameterType="Member" resultMap="memberResultSet">
+		<!-- SELECT * FROM MEMBER
+		WHERE MEM_ID=#{memId}
+		AND MEM_PWD=#{memPwd} -->
+
+		<!-- 암호화 후 -->
+		SELECT * FROM MEMBER
+		WHERE MEM_ID=#{memId}
+		AND MEM_STATUS='N'
+		
+
+</select>
+
+<select id="findId" parameterType="Member" resultMap="memberResultSet">
+	SELECT * FROM MEMBER
+	WHERE MEM_NAME=#{memName}
+	AND MEM_SSN=#{memSsn}
+</select>
+
+<select id="findpassword" parameterType="Member" resultMap="memberResultSet">
+	SELECT * FROM MEMBER
+	WHERE MEM_NAME=#{memName}
+	AND MEM_ID=#{memId}
+</select>
+
+
+<update id="updatePwd"  parameterType="Member">
+	UPDATE MEMBER
+	SET MEM_PWD = #{memPwd}
+	WHERE MEM_ID = #{memId}
+</update>
+
+<insert id="dailyCheck"  parameterType="Member"  >
+	INSERT INTO TODAYCHECK
+	VALUES(#{memNo},#{tdDate})
+
+</insert>
+
+<select id="dailyCheckList" parameterType="Member"  resultMap="memberdailyCheck" >
+		SELECT * FROM
+		TODAYCHECK
+		WHERE MEM_NO = #{memNo}
+</select>
+
+<insert id="couponInsert" parameterType="Member"  >
+	INSERT INTO COUPON_MEM
+	VALUES(CPMEM_SEQ.NEXTVAL,#{memNo},1,DEFAULT,NULL,#{tdDate})
+
+</insert>
+
+<select id="idDuplicate" parameterType="String" resultType="_int">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEM_ID=#{userId}
+</select>
+
+
+<insert id="insertMember" parameterType="Member">
+		INSERT INTO MEMBER
+		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
+		#{memEmail},#{memPhone},NULL,#{memOwner},#{bank},#{returnBank},'N',2000)
+
+	</insert>
+	
+	
+<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET MEM_PWD=#{memPwd}, MEM_EMAIL=#{memEmail},MEM_PHONE=#{memPhone},MEM_ADDRESS=#{memAddress}
+		WHERE MEM_ID=#{memId}
+</update>
+
+<update id="updateAccount" parameterType="Member" >
+	UPDATE MEMBER
+	SET MEM_OWNER=#{memOwner}, BANK=#{bank}, RETURN_BANK=#{returnBank}
+	WHERE MEM_ID=#{memId}
+</update>
+
+<update id="deleteMember"  parameterType="Member">
+		UPDATE MEMBER
+		SET MEM_STATUS = 'Y'
+		WHERE MEM_ID=#{memId}
+</update>
+
+<select id="selectMember" resultMap="memberResultSet">
+	SELECT *
+	FROM MEMBER
+</select>
+
+<!-- <select id="selectCmlist" parameterType="Member" resultMap="CouponMemResultMap">
+	SELECT * FROM
+	COUPON_MEM
+	MEM_NO = #{memNo}
+</select> -->
+
+<select id="cpCount1" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =2
+</select>
+
+<select id="cpCount2" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =3
+</select>
+
+<select id="cpCount3" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =4
+</select>
+
+<select id="cpCount4" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =5
+</select>
+
+<insert id="insertRateCp" parameterType="CouponMem">
+	INSERT INTO COUPON_MEM
+	VALUES (CPMEM_SEQ.NEXTVAL,#{memno},#{cpno},'N',NULL,SYSDATE)
+</insert>
+
+<select id="selectOneMember" resultMap="memberResultSet">
+	SELECT *
+	FROM MEMBER
+	WHERE MEM_NO=#{memNo}
+</select>
+
+<select id="dailyCheckCount" parameterType="Member"  resultType="_int"  >
+	SELECT COUNT(*) FROM
+	COUPON_MEM
+	WHERE MEM_NO=#{memNo}
+	AND CP_DATE = SYSDATE
+	AND CP_NO = 1
+
+</select>
+
+
+
+</mapper>

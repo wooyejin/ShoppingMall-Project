@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<settings>
+<setting value="NULL" name="jdbcTypeForNull"/>
+</settings>
+
+<!-- typeAliases -->
+<typeAliases>
+<typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
+<typeAlias type="com.kh.ot.main.vo.productWith" alias="productWith"/>
+<typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
+<typeAlias type="com.kh.ot.cart.vo.Cart" alias="Cart"/>
+<typeAlias type="com.kh.ot.cart.vo.Ord" alias="Ord"/>
+<typeAlias type="com.kh.ot.cart.vo.Pay" alias="Pay"/>
+<typeAlias type="com.kh.ot.main.vo.DetailReview" alias="DetailReview"/>
+<typeAlias type="com.kh.ot.main.vo.ReviewCheck" alias="ReviewCheck"/>
+<typeAlias type="com.kh.ot.review.vo.Review" alias="Review"/>
+<typeAlias type="com.kh.ot.review.vo.Review_Photo" alias="Review_Photo"/>
+<typeAlias type="com.kh.ot.review.vo.Review_count" alias="Review_count"/>
+<typeAlias type="com.kh.ot.review.vo.Like_Heart" alias="Like_Heart"/>
+<typeAlias type="com.kh.ot.review.vo.ReviewReply" alias="ReviewReply"/>
+<typeAlias type="com.kh.ot.main.vo.productbenner" alias="productbenner"/>
+<typeAlias type="com.kh.ot.mypage.vo.Address" alias="Address"/>
+ <typeAlias type="com.kh.ot.main.vo.MainSearchCondition" alias="MainSearchCondition"/>
+ <typeAlias type="com.kh.ot.main.vo.MaindownCategory" alias="MaindownCategory"/>
+ <typeAlias type="com.kh.ot.main.vo.MainupCategory" alias="MainupCategory"/>
+ <typeAlias type="com.kh.ot.main.vo.Wish" alias="Wish"/>
+<typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
+<typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
+<typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>
+<typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Coupon"/>
+ <typeAlias type="com.kh.ot.admin.vo.UpCategory" alias="UpCategory"/>
+<typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/>
+<typeAlias type="com.kh.ot.admin.vo.Design" alias="Design"/>
+<typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
+<typeAlias type="com.kh.ot.admin.vo.PrdtConnect" alias="PrdtConnect"/>
+<typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>
+<typeAlias type="com.kh.ot.mypage.vo.MyBoard" alias="MyBoard"/>
+<typeAlias type="com.kh.ot.mypage.vo.Return" alias="Return"/>
+<typeAlias type="com.kh.ot.mypage.vo.DIBS" alias="DIBS"/>
+</typeAliases>
+
+<!-- DB정보를 썼던 부분 environments 엘리먼트로 dataSource 등등의 정보를 썼는데스프링에서는 그 정보를 이 파일에서 안쓴다! 기존에 DB연결 설정에 대한 정보를 mybatis-config.xml에서 작성-> -->
+
+<!--  Mapper -->
+<mappers>
+<mapper resource="mappers/member-mapper.xml"/>
+<mapper resource="mappers/board-mapper.xml"/>
+<mapper resource="mappers/main-mapper.xml"/>
+<mapper resource="mappers/admin-mapper.xml"/>
+<mapper resource="mappers/mypage-mapper.xml"/>
+<mapper resource="mappers/cart-mapper.xml"/>
+ <mapper resource="mappers/review-mapper.xml"/>
+</mappers>
+
+
+</configuration>

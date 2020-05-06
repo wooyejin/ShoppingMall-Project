@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cartMapper">
+	<resultMap type="Cart" id="cartResultSet">
+			<id property = "ca_no" column="CA_NO"/>
+			<result property="memNo" column="MEM_NO"/>
+			<result property="prdt_no" column="PRDT_NO"/>
+			<result property="prdt_price" column="PRDT_PRICE"/>
+			<result property="prdt_count" column="PRDT_COUNT"/>
+			<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+			<result property="prdt_color" column="PRDT_COLOR"/>
+			<result property="prdt_size" column="PRDT_SIZE"/>
+			<result property="path" column="PRDT_IMAGE_PATH"/>
+			<result property="image" column="PRDT_IMAGE"/>
+			<result property="prdt_name" column="PRDT_NAME"/>
+
+	</resultMap>
+
+
+	<resultMap type="Coupon" id="couponMemResultSet">
+		<id property="cpmem_no" column="CPMEM_NO"/>
+		<result property ="cpName" column="CP_NAME"/>
+		<result property="cpDiscount" column="CP_DISCOUNT"/>
+	</resultMap>
+
+
+	<resultMap type="Ord" id="ordResultSet">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="ord_detailno" column="ORD_DETAILNO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="ord_date" column="ORD_DATE"/>
+		<result property="ord_receiver" column="ORD_RECEIVER"/>
+		<result property="ord_phone" column="ORD_PHONE"/>
+		<result property="ord_address" column="ORD_ADDRESS"/>
+		<result property="ord_message" column="ORD_MESSAGE"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="ord_size" column="ORD_SIZE"/>
+		<result property="ord_color" column="ORD_COLOR"/>
+		<result property="ord_count" column="ORD_COUNT"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+
+
+	</resultMap>
+
+	<resultMap type="Pay" id="payResultSet">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="sumprice" column="PAY_MONEY"/>
+		<result property="pay_category" column="PAY_CATEGORY"/>
+		<result property="pay_date" column="PAY_DATE"/>
+		<result property="pay_usedcp" column="PAY_USEDCP"/>
+		<result property="pay_point" column="PAY_POINT"/>
+		<result property="pay_yn" column="PAY_YN"/>
+		<result property="week" column="WEEK"/>
+
+	</resultMap>
+
+
+
+	<resultMap id="memResultSet" type="Member">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memSsn" column="MEM_SSN"/>
+		<result property="memAddress" column="MEM_ADDRESS"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memSumMoney" column="MEM_SUMMONEY"/>
+		<result property="memOwner" column="MEM_OWNER"/>
+		<result property="bank" column="BANK"/>
+		<result property="returnBank" column="RETURN_BANK"/>
+		<result property="mem_status" column="MEM_STATUS"/>
+		<result property="mem_point" column="MEM_POINT"/>
+	</resultMap>
+
+	<resultMap id="Address2ResultMap" type="Address">
+		<id property="adNo" column="AD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="adTitle" column="AD_TITLE"/>
+		<result property="adReceiver" column="AD_RECEIVER"/>
+		<result property="adAddress" column="AD_ADDRESS"/>
+		<result property="adPhone" column="AD_PHONE"/>
+	</resultMap>
+
+	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
+	SELECT *
+	FROM CRT C
+	JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
+	WHERE C.MEM_NO = #{mem_no}
+	ORDER BY C.CA_NO DESC
+	</select>
+
+
+	<select id="selectCouponList" parameterType="_int" resultMap="couponMemResultSet">
+	SELECT *
+	FROM COUPON_MEM CM
+	JOIN COUPON C ON (CM.CP_NO=C.CP_NO)
+	WHERE CM.MEM_NO = #{mem_no}
+	AND CM.CP_USING = 'N'
+
+	</select>
+
+	<delete id="deleteCart" parameterType="java.util.Map">
+		<foreach  item="c" collection="noArr"  index="index"
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+			DELETE FROM CRT
+			WHERE CA_NO = #{c.ca_no}
+		</foreach>
+
+	<!-- 	DELETE FROM CRT
+		<where>
+		 <foreach collection="noArr" item="noArr" open="" close="" separator="OR">
+		  (CA_NO = #{noArr.ca_no})
+		  </foreach>
+		</where> -->
+	</delete>
+
+	<insert id="cartInsert">
+		<foreach  item="o" collection="olist"  index="index"
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  ORD
+	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.memNo},#{o.prdt_no},SYSDATE,
+	 					#{o.ord_receiver},#{o.ord_phone},#{o.ord_address},#{o.ord_message},
+	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
+		</foreach>
+	</insert>
+
+	<select id="selectOrderList" parameterType="_int" resultMap="ordResultSet">
+	SELECT *
+	FROM ORD O
+	JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+	WHERE O.MEM_NO = #{mem_no}
+	AND O.ORD_STATUS = 'A'
+
+	</select>
+	<insert id="payInsert" parameterType="Pay">
+		<foreach  item="p" collection="plist"  index="index"
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  PAY
+	 	VALUES(PAY_SEQ.NEXTVAL,#{p.memNo},#{p.sumprice},#{p.pay_category},SYSDATE,
+						#{p.pay_usedcp},#{p.pay_point},'Y')
+		</foreach>
+	</insert>
+
+
+	<select id="selectPayList" parameterType="java.util.Map" resultMap="payResultSet">
+		SELECT *
+		FROM ORD O
+		JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
+		WHERE O.MEM_NO = #{memNo}
+		AND O.PRDT_NO IN
+		 <foreach item="p" index="index" collection="list"
+                      open="(" separator="," close=")">
+             			   #{p.prdt_no}
+        </foreach>
+		AND O.ORD_STATUS = 'A'
+
+	</select>
+
+	<select id="selecPro" parameterType="java.util.Map" resultMap="cartResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO IN
+		 <foreach item="o" index="index" collection="olist"
+                      open="(" separator="," close=")">
+             			   #{o.prdt_no}
+        </foreach>
+
+	</select>
+
+	<update id="updatePrice">
+		UPDATE MEMBER SET
+		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY)
+                FROM MEMBER
+                WHERE MEM_NO=#{memNo}) + #{prdt_sumprice}
+		WHERE MEM_NO=#{memNo}
+	</update>
+
+	<update id="updateCoupon">
+			UPDATE COUPON_MEM SET
+			CP_USING = 'Y',CP_USE_DATE=SYSDATE
+			WHERE CPMEM_NO = #{pay_usedcp}
+	</update>
+
+	<update id="updatePoint">
+			UPDATE MEMBER SET
+			MEM_POINT = (SELECT SUM(MEM_POINT)
+             FROM MEMBER
+             WHERE MEM_NO=#{memNo}) - #{pay_point}
+			WHERE MEM_NO=#{memNo}
+	</update>
+	<select id="selectMember" parameterType="Member" resultMap="memResultSet">
+		SELECT * FROM
+		MEMBER
+		WHERE MEM_NO = #{memNo}
+
+	</select>
+
+	<select id="countCoupon" parameterType="Member" resultType="_int" >
+		SELECT count(*) FROM
+		MEMBER M
+		JOIN COUPON_MEM CM ON(M.MEM_NO = CM.MEM_NO)
+		WHERE M.MEM_NO = #{memNo}
+		AND CM.CP_USING='N'
+	</select>
+
+	<update id="updateProduct" parameterType="java.util.Map">
+		<foreach  item="o" collection="olist"  index="index"
+      	 separator=";" open="DECLARE BEGIN" close="; END;" >
+				UPDATE PRDT_OPT SET
+				OPT_STOCK = (SELECT SUM(OPT_STOCK)
+										FROM PRDT_OPT
+										WHERE PRDT_NO = #{o.prdt_no}
+										AND 	OPT_COLOR = #{o.ord_color}
+										AND OPT_SIZE = #{o.ord_size}) - #{o.ord_count}
+            	WHERE PRDT_NO = #{o.prdt_no}
+				AND 	OPT_COLOR = #{o.ord_color}
+				AND OPT_SIZE = #{o.ord_size}
+		</foreach>
+	</update>
+
+	<select id="selectAdList" resultMap="Address2ResultMap" >
+	   SELECT * FROM
+	   ADDRESS
+	   WHERE MEM_NO = #{memNo}
+	</select>
+
+	<select id="selectAdOne"  resultMap="Address2ResultMap" >
+	  SELECT * FROM
+	   ADDRESS
+	   WHERE AD_NO = #{adNo}
+	</select>
+
+
+	<select id="updateMemPoint" parameterType="Member" >
+		UPDATE MEMBER
+		SET MEM_POINT = (SELECT SUM(MEM_POINT)
+             FROM MEMBER
+             WHERE MEM_NO=#{memNo}) + #{mem_point}
+             WHERE MEM_NO = #{memNo}
+	</select>
+	
+	<select id="selectPay" parameterType="_int" resultMap="payResultSet">
+		SELECT * FROM
+		PAY
+		WHERE ORD_NO=#{ordNo}
+	</select>
+
+	<insert id="insertPoint"  parameterType="Point">
+		INSERT INTO POINT VALUES 
+		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
+	</insert>
+	
+	<select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
+			SELECT *
+			FROM CRT C
+			JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
+			WHERE C.CA_NO IN
+		 <foreach item="ca" index="index" collection="cartList"
+                      open="(" separator="," close=")">
+             			   #{ca.ca_no}
+        </foreach>
+	
+	</select> 
+	
+	<select id="selectOrder" resultMap="ordResultSet">
+		SELECT *
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
+	</select>
+	
+	<update id="updateProductStock"  parameterType="java.util.Map">
+				<foreach  item="o" collection="olist"  index="index"
+      	 separator=";" open="DECLARE BEGIN" close="; END;" >
+		UPDATE PRDT
+		SET PRDT_SCOUNT = (SELECT SUM(PRDT_SALE) FROM PRDT
+										WHERE PRDT_NO = #{o.prdt_no})+#{o.ord_count}
+		WHERE PRDT_NO = #{o.prdt_no}								
+	</foreach>
+	</update>
+	
+	<select id="todayScountSelect" resultType="_int">
+
+	SELECT NVL(SUM(ORD_COUNT),0) AS 당일판매량
+		FROM ORD
+		WHERE TO_CHAR(ORD_DATE,'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')
+
+	</select>
+	
+	<select id="todaySpriceSelect" resultType="_int">
+		SELECT NVL(SUM(PAY_MONEY),0) AS 당일총금액
+		FROM PAY
+		WHERE TO_CHAR(PAY_DATE,'YY/MM/DD') = TO_CHAR(SYSDATE,'YY/MM/DD')
+	</select>
+		
+		<select id="weekList"  resultMap="payResultSet">
+				<![CDATA[
+				SELECT TO_CHAR(SYSDATE - (LEVEL - 1), 'YY/MM/DD') AS WEEK
+				FROM DUAL 
+				CONNECT BY LEVEL <= 7
+		        ]]>
+		</select>
+		
+		<select id="weekPayList" resultMap="payResultSet">
+				
+				SELECT SUM(PAY_MONEY) AS PAY_MONEY,TO_CHAR(PAY_DATE,'YY/MM/DD') AS WEEK
+				FROM PAY
+				WHERE PAY_DATE>=TO_CHAR(SYSDATE-7,'YY/MM/DD')
+				AND PAY_YN='Y'
+				GROUP BY TO_CHAR(PAY_DATE,'YY/MM/DD')
+		
+		</select>
+		
+		<select id="monthScountList" resultMap="payResultSet">
+			<![CDATA[
+			SELECT TO_CHAR(ADD_MONTHS(SYSDATE,-(LEVEL-1)),'YYYYMM') AS WEEK
+            FROM DUAL
+            CONNECT BY LEVEL<=12
+			]]>
+		</select>
+		
+		<select id="monthPayList" resultMap="payResultSet">
+			<![CDATA[
+			SELECT SUM(PAY_MONEY) as PAY_MONEY, to_char(pay_date, 'YYYYMM') as WEEK
+			FROM PAY
+			WHERE PAY_DATE>=SYSDATE-365 AND PAY_DATE<SYSDATE
+			GROUP BY to_char(PAY_DATE, 'YYYYMM')
+			order by WEEK desc
+			]]>
+		</select>
+	
+	
+</mapper>
