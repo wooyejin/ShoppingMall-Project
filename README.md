@@ -29,7 +29,7 @@
 |2020.04.01~2020.04.29|기능구현|
  
 ## 화면 구현
-<h5>메인화면 및 기능</h5>
+<h5>메인화면</h5>
 <img src="https://user-images.githubusercontent.com/52619813/81415252-27a3a200-9183-11ea-8582-49e3a13f80b0.PNG" width="700">
 <h6>best 품목 sale 품목</h6>
-<img src="https://user-images.githubusercontent.com/52619813/81416651-faf08a00-9184-11ea-8cb0-0f88b345660b.PNG" width="700">
+<img src="https://user-images.githubusercontent.com/52619813/81416785-2d9a8280-9185-11ea-807c-243262a4c6a9.PNG" width="700">
