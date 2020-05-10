@@ -84,6 +84,7 @@
 배송지 등록을 누르면 배송지명, 성명, 주소, 전화번호를 등록할 수 있으며 등록된 주소록은 결제페이지에서도 선택이 가능합니다.
 
 **리뷰게시판**
+> 리뷰를 볼 수 있는 페이지입니다.
 <img src="https://user-images.githubusercontent.com/52619813/81496512-0feb2b80-92f3-11ea-9c18-084af3649ad4.PNG">
 <img src="https://user-images.githubusercontent.com/52619813/81496767-0236a580-92f5-11ea-8861-8aa4816e59a8.PNG">
 
