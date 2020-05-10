@@ -23,7 +23,7 @@
 * 프레임워크 : spring, mybatis
 * 데이터베이스 : oracle, mongoDB
 * html5, css, javascript, ajax
-* github, , maven, node.js
+* github, maven, node.js, bootstrap
 
 ## 개발환경구축
 1. JDK 설치
@@ -39,4 +39,55 @@
 5. STS(Spring Tool Suite) 설치(본인의 Eclipse 버전에 맞춰서 다운받기)
  
 ## 데이터베이스 설계
- 
+<img src ="https://user-images.githubusercontent.com/52619813/81494605-21c5d200-92e5-11ea-90d5-fa67bb180af9.png">
+
+
+## 구현기능소개
+**회원가입 기능**
+> 회원가입 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81494770-4a020080-92e6-11ea-9bd8-2f38be33c57a.PNG">
+
+아이디를 입력 후 중복확인을 누르면 중복확인 검사가 가능하게끔 구현하였습니다. 비밀번호 정규식 코드를 집어넣어 불일치 할 경우 불일치하다 라는 글자가 뜨게 구현하였고, 이메일 형식에 맞게 작성을 하도록 하였습니다.
+
+
+**장바구니 기능**
+> 장바구니 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81495579-38bbf280-92ec-11ea-8c3a-227d1af44cd6.PNG">
+<img src="https://user-images.githubusercontent.com/52619813/81495631-9f411080-92ec-11ea-9c64-85bdb6eade18.PNG">
+
+선택한 상품을 구매할 수 있으며 쿠폰과 적립금 사용함에따라 할인금액이 나오게 구현하였습니다. 적립금은 최소 2000원부터 사용이 가능하고, 쿠폰은 회원가입/구매한 누적 금액에 따라 등급이 바뀌며, 등급에 따라 쿠폰이 자동으로 발급됩니다. 발급받은 쿠폰은 쿠폰사용 버튼을 누르면 확인이 가능합니다.
+
+**배송정보 기능**
+> 배송지 등록 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81495702-18406800-92ed-11ea-9b55-93227f98c07f.PNG">
+
+배송지는 언제든지 바뀔 수 있기에 마이페이지에서 등록한 주소록 DB를 불러와 selectBox에서 선택이 가능하게끔 구현하였습니다.
+
+**결제 기능**
+> 결제 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81495908-ba148480-92ee-11ea-912b-2e662a312b76.PNG">
+
+결제가 완료되면 결제수단, 배송지정보, 주문한 상품, 주문일자, 주문한 금액을 볼 수 있는 페이지로 넘어가게 됩니다.
+
+**QnA 게시판**
+> 상품문의, 배송문의, 배송전취소/변경문의, 배송후교환/반품문의, 입금확인/입금자변경문의, 상품불량 및 오배송접수에 대한 문의 게시판 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81496130-3cea0f00-92f0-11ea-8b43-f5e90cd2ba41.PNG">
+
+검색필터기능과 페이징처리가 되어있으며 글을 작성할 시 비밀글이면 비밀번호를 입력하여 게시물을 들어갈 수 있게 구현했습니다.
+공개글은 비밀글 없이 들어갈 수 있으며, 관리자가 답변을 작성할 시 답변완료로 자동으로 바뀌게됩니다.
+
+**주소록 추가**
+> 주소록을 추가할 수 있는 페이지입니다.
+<img src="https://user-images.githubusercontent.com/52619813/81496171-9f430f80-92f0-11ea-928b-1625cbd05d01.PNG">
+<img src="https://user-images.githubusercontent.com/52619813/81496198-c7cb0980-92f0-11ea-885f-d62cce10df03.PNG">
+
+배송지 등록을 누르면 배송지명, 성명, 주소, 전화번호를 등록할 수 있으며 등록된 주소록은 결제페이지에서도 선택이 가능합니다.
+
+**리뷰게시판**
+<img src="https://user-images.githubusercontent.com/52619813/81496512-0feb2b80-92f3-11ea-9c18-084af3649ad4.PNG">
+<img src="https://user-images.githubusercontent.com/52619813/81496767-0236a580-92f5-11ea-8861-8aa4816e59a8.PNG">
+
+평점, 좋아요, 최신 순, 키, 몸무게, 사이즈 선택 시 정렬이 가능하며 카테고리 별로 리뷰가 나뉘어져있어 확인이 가능합니다.
+해당되는 조건에 리뷰가 없을 시에는 작성된 리뷰가 없습니다 문구가 뜨게 구현했습니다.
+이미지 클릭 시 댓글기능, 댓글신고기능, 좋아요 기능을 구현했고 본인 댓글은 신고가 불가능하게 상대방이 작성한 댓글을 신고할 시에 관리자 쪽에서 처리가 가능하게끔 구현했습니다. 좋아요 기능은 계정 당 리뷰 별로 한 번씩 누를 수 있고 누르게되면 카운트 처리가 되어 갯수 추가가 됩니다. 좋아요를 취소할 시 카운트가 -1이 되어 갯수가 감소합니다.
+
